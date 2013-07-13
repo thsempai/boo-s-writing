@@ -39,3 +39,4 @@ nosetests.xml
 
 # Photoshop
 *.psd
+/Liste des features.ods
