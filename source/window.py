@@ -19,7 +19,28 @@ class MainWindow(object):
 
         self.window.set_border_width(10)
 
+        # fenêtre en 3 parties
+
+        self.table = gtk.Table(columns=3, rows=3, homogeneous=True)
+        self.window.add(self.table)
+
+
+        self.widget = {}
+
+        self.widget['tag list'] = gtk.TreeView()
+        self.widget['note list'] =  gtk.TreeView()
+        self.widget['story list'] = gtk.TreeView()
+
+        self.table.attach(self.widget['tag list'],0,1,0,1)
+        self.table.attach(self.widget['note list'],0,1,1,2)
+        self.table.attach(self.widget['story list'],0,1,2,3)
+
+        for widget in self.widget.values():
+            widget.show()
+
+        self.table.show()
         self.window.show()
+
 
 
     def delete_event(self, widget, event, data=None):
