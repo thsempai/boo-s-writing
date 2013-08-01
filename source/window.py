@@ -35,6 +35,10 @@ class MainWindow(object):
         self.table.attach(self.widget['note list'],0,1,1,2)
         self.table.attach(self.widget['story list'],0,1,2,3)
 
+        self.widget['writing zone'] = gtk.TextView()
+
+        self.table.attach(self.widget['writing zone'],1,2,0,3)
+
         for widget in self.widget.values():
             widget.show()
 
