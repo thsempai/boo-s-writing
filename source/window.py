@@ -3,6 +3,7 @@
 import pygtk
 import gtk
 
+from translate import TRANSLATE
 from data import TITLE, DEFAULT_SIZE
 
 class MainWindow(object):
@@ -19,30 +20,54 @@ class MainWindow(object):
 
         self.window.set_border_width(10)
 
-        # fenêtre en 3 parties
+        # disvison de la fenêtre
 
-        self.table = gtk.Table(columns=3, rows=3, homogeneous=True)
-        self.window.add(self.table)
+        self.main_box = gtk.VBox(homogeneous=False)
+        self.main_box.show()
+
+        self.work_box = gtk.HBox(homogeneous=False)
+        self.work_box.show()
+        self.main_box.pack_end(self.work_box,expand=True,fill=True,padding=2)
+
+        self.left_box = gtk.VBox(homogeneous=False)
+        self.work_box.pack_start(self.left_box,expand=True,fill=False,padding=2)
+
+        self.window.add(self.main_box)
+
+        # ajout du menu
+
+        menu_bar = gtk.MenuBar()
+        self.main_box.pack_start(menu_bar,expand=False,fill=False,padding=2)
+        menu_bar.show()
+
+        self.menu = {}
+        
+        menu_file = gtk.Menu()
+        self.menu['file'] = gtk.MenuItem(label=TRANSLATE['FILE']['fr'])
+        self.menu['file'].set_submenu(menu_file)
+        menu_bar.append(self.menu['file'])
+
+        # into menu file
+
+        self.menu['save'] = gtk.MenuItem(label=TRANSLATE['SAVE']['fr'])
+        menu_file.append(self.menu['save'])
 
 
         self.widget = {}
 
-        self.widget['tag list'] = gtk.TreeView()
-        self.widget['note list'] =  gtk.TreeView()
-        self.widget['story list'] = gtk.TreeView()
-
-        self.table.attach(self.widget['tag list'],0,1,0,1)
-        self.table.attach(self.widget['note list'],0,1,1,2)
-        self.table.attach(self.widget['story list'],0,1,2,3)
-
+        #ajout de la zone d'écriture
         self.widget['writing zone'] = gtk.TextView()
 
-        self.table.attach(self.widget['writing zone'],1,2,0,3)
+        self.work_box.pack_start(self.widget['writing zone'],expand=True,fill=True,padding=2)
+
+        # affichage 
 
         for widget in self.widget.values():
             widget.show()
 
-        self.table.show()
+        for menu in self.menu.values():
+            menu.show()
+
         self.window.show()
 
 
