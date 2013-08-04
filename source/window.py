@@ -4,8 +4,11 @@ import pygtk
 import gtk
 
 from translate import TRANSLATE
-from data import TITLE, DEFAULT_SIZE, PROGRAM_ICONE
+from data import TITLE, DEFAULT_SIZE, PROGRAM_ICON, INPUT_WINDOW_SIZE
 from project import Project
+from tools import Dialog, FileChooserDialog
+
+from error_manager import BsWException
 
 class MainWindow(object):
 
@@ -16,9 +19,9 @@ class MainWindow(object):
         self.current_project = Project()
 
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
-        self.window.set_icon_from_file(PROGRAM_ICONE)
+        self.window.set_icon_from_file(PROGRAM_ICON)
 
-        self.window.set_title(TITLE)
+        self.window.set_title(TITLE + ' ('+ self.current_project.name + ')')
         self.window.set_default_size(*DEFAULT_SIZE)
 
         self.window.connect("destroy", self.destroy)
@@ -93,15 +96,42 @@ class MainWindow(object):
 
         return False
 
-    def save_text(self):
-        pass
 
     def new_project(self, args):
-        self.current_project = Project()
-        self.widget['writing_zone'].set_buffer(self.current_project.current_chapter['text']) 
+        try:
+
+            dialog = Dialog(title=TRANSLATE['NEW_PROJECT']['fr'],message=TRANSLATE['NEW_PROJECT_TXT']['fr'],parent=self.window,entry=True)
+            new_project_name = dialog.run()
+
+            if new_project_name:
+                self.window.set_title(TITLE + ' ('+ new_project_name + ')')
+            
+                self.current_project = Project(name=new_project_name)
+                self.widget['writing_zone'].set_buffer(self.current_project.current_chapter['text'])
+            dialog.destroy()
+        except Exception as e:
+            raise BsWException(e.message,e)
+            
+
 
     def save_current_project(self, args):
-        self.save_text()
+        try:
+            if self.current_project.path:
+                self.current_project.save()
+            else:
+
+                file_dialog = FileChooserDialog(TRANSLATE['SAVE_PROJECT']['fr'])
+                directory_path = file_dialog.run()
+                file_dialog.destroy()
+
+                file_name = self.current_project.name
+                file_name = file_name.replace('-','_')
+                file_name = file_name.replace(' ','_')
+
+                self.current_project.save(directory_path+'/'+file_name)
+        except Exception as e:
+            raise BsWException(e.message,e)
+
 
     def destroy(self, widget, data=None):
         gtk.main_quit()
