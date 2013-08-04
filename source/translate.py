@@ -19,7 +19,17 @@ TRANSLATE = {
                                     },
             'SAVE_PROJECT':
                             {
-                            'fr' : 'Sauver le projet',
-                            'en' : 'Save project'
+                            'fr' : 'Choix du dossier pour sauver le projet',
+                            'en' : 'Choose directory for project saving'
+                            },
+            'DIRECTORY_ALREADY_EXISTS':
+                            {
+                            'fr' : 'Le repertoir existe déjà.',
+                            'en' : 'Directorty already exists.'
+                            },
+            'DIRECTORY_ALREADY_EXISTS_TXT':
+                            {
+                            'fr' : "Le repertoir existe déjà.\nEst-ce qu'il doit être écrasé?",
+                            'en' : 'Directorty already exists.\nOverwrite this directory?'
                             }
             }
