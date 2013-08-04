@@ -5,10 +5,15 @@ import gtk
 
 from translate import TRANSLATE
 from data import TITLE, DEFAULT_SIZE
+from project import Project
 
 class MainWindow(object):
 
     def __init__(self):
+
+        #project courant
+
+        self.current_project = Project()
 
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 
@@ -49,16 +54,24 @@ class MainWindow(object):
 
         # into menu file
 
+        self.menu['new_project'] = gtk.MenuItem(label=TRANSLATE['NEW_PROJECT']['fr'])
+        menu_file.append(self.menu['new_project'])
+
+        self.menu['new_project'].connect_object("activate", self.new_project,())
+
+
         self.menu['save'] = gtk.MenuItem(label=TRANSLATE['SAVE']['fr'])
         menu_file.append(self.menu['save'])
+
+        self.menu['save'].connect_object("activate", self.save_current_project,())
 
 
         self.widget = {}
 
         #ajout de la zone d'écriture
-        self.widget['writing zone'] = gtk.TextView()
+        self.widget['writing_zone'] = gtk.TextView(self.current_project.current_chapter['text'])
 
-        self.work_box.pack_start(self.widget['writing zone'],expand=True,fill=True,padding=2)
+        self.work_box.pack_start(self.widget['writing_zone'],expand=True,fill=True,padding=2)
 
         # affichage 
 
@@ -78,6 +91,16 @@ class MainWindow(object):
         # you don't want the window to be destroyed.
 
         return False
+
+    def save_text(self):
+        pass
+
+    def new_project(self, args):
+        self.current_project = Project()
+        self.widget['writing_zone'].set_buffer(self.current_project.current_chapter['text']) 
+
+    def save_current_project(self, args):
+        self.save_text()
 
     def destroy(self, widget, data=None):
         gtk.main_quit()
