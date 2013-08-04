@@ -4,7 +4,7 @@ import pygtk
 import gtk
 
 from translate import TRANSLATE
-from data import TITLE, DEFAULT_SIZE
+from data import TITLE, DEFAULT_SIZE, PROGRAM_ICONE
 from project import Project
 
 class MainWindow(object):
@@ -16,6 +16,7 @@ class MainWindow(object):
         self.current_project = Project()
 
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
+        self.window.set_icon_from_file(PROGRAM_ICONE)
 
         self.window.set_title(TITLE)
         self.window.set_default_size(*DEFAULT_SIZE)
