@@ -12,5 +12,14 @@ TRANSLATE = {
             'NEW_PROJECT':  {
                             'fr' : 'Nouveau projet',
                             'en' : 'New project'
+                            },
+            'NEW_PROJECT_TXT':      {
+                                    'fr' : 'Nom du nouveau projet :',
+                                    'en' : 'Name of new project :'
+                                    },
+            'SAVE_PROJECT':
+                            {
+                            'fr' : 'Sauver le projet',
+                            'en' : 'Save project'
                             }
             }

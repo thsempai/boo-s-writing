@@ -5,9 +5,12 @@ import gtk
 
 class Project(object):
     
-    def __init__(self):
+    def __init__(self,**kwargs):
 
-        self.name = 'project'
+        if not kwargs.has_key('name'):
+            kwargs['name'] = 'project'
+
+        self.name = kwargs['name']
         self.path = None
         self.chapter = [{'name':'chap1','text':gtk.TextBuffer()}]
         self.current_chapter = self.chapter[0]
