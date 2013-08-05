@@ -31,5 +31,15 @@ TRANSLATE = {
                             {
                             'fr' : "Le répertoire existe déjà.\nEst-ce qu'il doit être écrasé?",
                             'en' : 'Directorty already exists.\nOverwrite this directory?'
-                            }
+                            },
+            'DIRECTORY_NOT_EMPTY':
+                            {
+                            'fr' : "Le répertoire n'est pas vide.",
+                            'en' : "Directory is not empty" 
+                            },
+            'DIRECTORY_NOT_EMPTY_TXT':
+                            {
+                            'fr' : "Le répertoire n'est pas vide.\nCela pourrait poser des porblèmes.\nContinuer?",
+                            'en' : "Directory is not empty\nIt's can be some problems. Continue?" 
+                            },
             }

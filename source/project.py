@@ -50,8 +50,19 @@ class Project(object):
 
                 if not ok:
                     return
+
+                if len(os.listdir(path)):
+                    dialog = Dialog(title=TRANSLATE['DIRECTORY_NOT_EMPTY']['fr'],message = TRANSLATE['DIRECTORY_NOT_EMPTY_TXT']['fr'])
+                    ok = dialog.run()
+                    dialog.destroy()
+
+                    if not ok:
+                        return
+                    
             else:
                 os.makedirs(path)
+
+            self.path = path
 
             
 
