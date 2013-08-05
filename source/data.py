@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-TITLE = "Boo's Writing ante-alpha 0.1"
+TITLE = "Boo's Writing ante-alpha 0.2"
 
 DEFAULT_SIZE = 800,600
 

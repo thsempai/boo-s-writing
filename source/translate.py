@@ -24,12 +24,12 @@ TRANSLATE = {
                             },
             'DIRECTORY_ALREADY_EXISTS':
                             {
-                            'fr' : 'Le repertoir existe déjà.',
+                            'fr' : 'Le répertoire existe déjà.',
                             'en' : 'Directorty already exists.'
                             },
             'DIRECTORY_ALREADY_EXISTS_TXT':
                             {
-                            'fr' : "Le repertoir existe déjà.\nEst-ce qu'il doit être écrasé?",
+                            'fr' : "Le répertoire existe déjà.\nEst-ce qu'il doit être écrasé?",
                             'en' : 'Directorty already exists.\nOverwrite this directory?'
                             }
             }
